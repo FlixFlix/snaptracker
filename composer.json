@@ -1,0 +1,13 @@
+{
+    "name": "gediminasiv/flixflix",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Gediminas Ivanauskas",
+            "email": "gediminas.iv@gmail.com"
+        }
+    ],
+    "require": {
+        "league/oauth2-client": "^2.2"
+    }
+}
