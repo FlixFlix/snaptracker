@@ -4,14 +4,14 @@
 
 function getConfig() {
     return [
-        'clientId'                => 'b0e1b53ec0a2d223b44c20ddca20aec88bf9882d',
-        'clientSecret'            => '0472285e711337bbe79947e8282194a1bb84686d',
-        'redirectUri'             => 'http://scotchbox/',
-        'urlAuthorize'            => 'https://launchpad.37signals.com/authorization/new',
-        'urlAccessToken'          => 'https://launchpad.37signals.com/authorization/token',
-        'urlResourceOwnerDetails' => '',
-        'appId'                   => 3847617,
-        'apiUrl'                  => 'https://3.basecampapi.com',
-        'authorizationUrl'        => 'https://launchpad.37signals.com'
+        'clientId'                => 'b0e1b53ec0a2d223b44c20ddca20aec88bf9882d', // this is the clientId obtainable in integration page
+        'clientSecret'            => '0472285e711337bbe79947e8282194a1bb84686d', // this is the clientSecret obtainable in integration page
+        'redirectUri'             => 'http://scotchbox/', // this is the redirect uri provided in integration page
+        'urlAuthorize'            => 'https://launchpad.37signals.com/authorization/new', // this doesn't need to be changed
+        'urlAccessToken'          => 'https://launchpad.37signals.com/authorization/token', // this doesn't need to be changed
+        'urlResourceOwnerDetails' => '', // this doesn't need to be changed
+        'appId'                   => 3847617, // this is the ID of the application, which you obtain by visiting main basecamp page
+        'apiUrl'                  => 'https://3.basecampapi.com', // this doesn't need to be changed
+        'authorizationUrl'        => 'https://launchpad.37signals.com' // this doesn't need to be changed
     ];
 }

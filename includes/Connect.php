@@ -4,8 +4,11 @@ use League\OAuth2\Client\Provider\GenericProvider;
 use GuzzleHttp\Client;
 
 class Connect {
-    public $provider;
+    public $provider; // Oauth provider variable which we will use later
 
+    /**
+     * Provides a client with parameters to connect a user with.
+     */
     public function __construct() {
         $config = getConfig();
 
@@ -20,7 +23,7 @@ class Connect {
     }
 
     /**
-     * This function generates working authorization url, which GenericProvider fails to generate
+     * This function generates working authorization url, which GenericProvider fails to generate.
      */
      public function getAccessToken($code)
      {
@@ -44,7 +47,7 @@ class Connect {
      }
 
     /**
-     * This function generates working authorization url, which GenericProvider fails to generate
+     * This function generates working authorization url, which GenericProvider fails to generate, so we have to implement some string functions, that helps with it.
      */
     public function getAuthorizationUrl()
     {
