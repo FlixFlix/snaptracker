@@ -10,7 +10,7 @@ $config = getConfig(); // this loads configuration, for values provided in confi
 if (isset($_GET['logout'])) { // this is a function for logging out
     $session->destroySession();
 
-    header('Refresh:0'); // this refreshes a page after logging out
+    echo '<script>location.reload();</script>';
     die;
 }
 
@@ -26,7 +26,8 @@ if (!$session->getAccessToken()) { // checks if session has accessToken provided
 
         $session->setAccessToken($accessToken->access_token); // this saves access token to the session
 
-        header('Refresh:0'); // this refreshes a page after logging in
+        // this refreshes a page after logging in
+        echo '<script>location.reload();</script>';
         die;
     }
 
