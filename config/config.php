@@ -4,9 +4,9 @@
 
 function getConfig() {
     return [
-        'clientId'                => 'b0e1b53ec0a2d223b44c20ddca20aec88bf9882d', // this is the clientId obtainable in integration page
-        'clientSecret'            => '0472285e711337bbe79947e8282194a1bb84686d', // this is the clientSecret obtainable in integration page
-        'redirectUri'             => 'http://scotchbox/', // this is the redirect uri provided in integration page
+        'clientId'                => 'a497d1d3fc989abd4f9b756ee29a81c815dbae88', // this is the clientId obtainable in integration page
+        'clientSecret'            => '95143a2d776d5d0e0fcc9bc3c5c331c7737e4799', // this is the clientSecret obtainable in integration page
+        'redirectUri'             => 'https://iredesigned.com/wp/snaptracker/', // this is the redirect uri provided in integration page
         'urlAuthorize'            => 'https://launchpad.37signals.com/authorization/new', // this doesn't need to be changed
         'urlAccessToken'          => 'https://launchpad.37signals.com/authorization/token', // this doesn't need to be changed
         'urlResourceOwnerDetails' => '', // this doesn't need to be changed

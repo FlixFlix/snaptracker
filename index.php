@@ -1,5 +1,6 @@
 <?php
-
+// require($_SERVER['DOCUMENT_ROOT'].'/wp/wp-load.php');
+// get_header();
 require 'vendor/autoload.php'; // lets include common libraries
 require 'config/config.php'; // lets include configuration files
 require 'includes/autoload.php'; // lets include all the libraries we need
@@ -50,8 +51,7 @@ foreach ($projects as $project) { // we loop through the projects to get to do l
 
 // we dump the result
 
-echo '<pre>';
-var_dump($toDoLists);
-echo '</pre>';
 
+highlight_string("<?php\n\$toDoLists =\n" . var_export($toDoLists, true) . ";\n?>"); 
+// get_footer();
 // done
