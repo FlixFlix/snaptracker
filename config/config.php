@@ -12,6 +12,7 @@ function getConfig() {
         'urlResourceOwnerDetails' => '', // this doesn't need to be changed
         'appId'                   => 3847617, // this is the ID of the application, which you obtain by visiting main basecamp page
         'apiUrl'                  => 'https://3.basecampapi.com', // this doesn't need to be changed
-        'authorizationUrl'        => 'https://launchpad.37signals.com' // this doesn't need to be changed
+        'authorizationUrl'        => 'https://launchpad.37signals.com', // this doesn't need to be changed
+        'tokenPath'               => 'tokens2.txt'
     ];
 }

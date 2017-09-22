@@ -46,6 +46,30 @@ class Connect {
         return [];
      }
 
+     /**
+      * This function renews token, to make it immortal after single login
+      */
+     public function renewAccessToken($refreshToken)
+     {
+        $config = getConfig();
+
+        $accessTokenUrl = $this->provider->getBaseAccessTokenUrl($config);
+
+        $accessTokenUrl .= "?type=refresh&refresh_token=" . $refreshToken . "&client_id=" . $config['clientId'] . "&redirect_uri=" . $config['redirectUri'] . "&client_secret=" . $config['clientSecret'];
+
+        $client = new Client();
+
+        $response = $client->post($accessTokenUrl);
+
+        if ($response->getStatusCode() == 200) {
+            $body = (string) $response->getBody();
+
+            return json_decode($body);
+        }
+
+        return [];
+     }
+
     /**
      * This function generates working authorization url, which GenericProvider fails to generate, so we have to implement some string functions, that helps with it.
      */

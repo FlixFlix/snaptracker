@@ -33,7 +33,7 @@ class Communicator {
 
         $toDoSet = json_decode((string) $this->makeGetRequest($singleDock->url)->getBody()); // gets information about the To-Do Set and To-Do lists it contains
 
-        return json_decode((string) $this->makeGetRequest($toDoSet->todolists_url)->getBody()); // returns array with all the To-Do lists
+        return json_decode((string) $this->makeGetRequest($toDoSet->todolists_url)->getBody());
     }
 
     /**
@@ -43,6 +43,14 @@ class Communicator {
     {
         $url = $this->generateUrl('projects.json');
 
+        return json_decode((string) $this->makeGetRequest($url)->getBody());
+    }
+
+    /**
+     * This function gets all todos from a single list
+     */
+    public function getToDos($url)
+    {
         return json_decode((string) $this->makeGetRequest($url)->getBody());
     }
 
