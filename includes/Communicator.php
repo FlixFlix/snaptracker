@@ -79,4 +79,29 @@ class Communicator {
             ]
         ]);
     }
+
+    /**
+     * Wrapper function that puts everything into a big json.
+     * $url array Array of project objects
+     */
+    public function getAllToDos()
+    {
+        $projects = $this->getProjects(); // we get a list of projects
+
+        $toDosList = [];
+
+        foreach ($projects as $project) { // we loop through the projects to get to do lists, and merge them to a single array
+            $_todoLists = $this->getToDoLists($project);
+
+            foreach ($_todoLists as $singleList) {
+                $toDos = $this->getToDos($singleList->todos_url);
+
+                foreach ($toDos as $toDo) {
+                    $toDosList[] = $toDo;
+                }
+            }
+        }
+
+        return $toDosList;
+    }
 }
