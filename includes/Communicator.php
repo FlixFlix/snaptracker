@@ -47,6 +47,20 @@ class Communicator {
     }
 
     /**
+     * This function fetches all project correspondences, for a specific project.
+     *
+     * $projectId integer ID of the project.
+     */
+    public function getProjectCorrespondences($projectId)
+    {
+        $url = $this->generateUrl('buckets/' . $projectId . '/client/correspondences.json');
+
+        $correspondences = $this->makeGetRequest($url);
+
+        return json_decode((string) $correspondences->getBody());
+    }
+
+    /**
      * This function gets all todos from a single list
      */
     public function getToDos($url)
