@@ -44,8 +44,6 @@ class TokenStorage {
 
             file_put_contents($this->tokenPath, $tokenInfo);
         } else {
-            var_dump($token);
-            die;
             file_put_contents($this->tokenPath, '');
         }
     }

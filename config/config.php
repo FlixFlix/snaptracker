@@ -13,6 +13,9 @@ function getConfig() {
         'appId'                   => 3847617, // this is the ID of the application, which you obtain by visiting main basecamp page
         'apiUrl'                  => 'https://3.basecampapi.com', // this doesn't need to be changed
         'authorizationUrl'        => 'https://launchpad.37signals.com', // this doesn't need to be changed
-        'tokenPath'               => 'tokens2.txt'
+        'tokenPath'               => 'tokens2.txt',
+        'cachedPath'              => 'cached.txt', // file in which the json data is saved
+        'expiryInfoPath'          => 'cacheExpiry.txt', // file in which we see, when does cache info expires
+        'expiryTime'              => 0 // time in seconds before the data is regenerated
     ];
 }

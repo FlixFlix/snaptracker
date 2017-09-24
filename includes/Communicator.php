@@ -88,20 +88,18 @@ class Communicator {
     {
         $projects = $this->getProjects(); // we get a list of projects
 
-        $toDosList = [];
-
-        foreach ($projects as $project) { // we loop through the projects to get to do lists, and merge them to a single array
+        foreach ($projects as $key => $project) { // we loop through the projects to get to do lists, and merge them to a single array
             $_todoLists = $this->getToDoLists($project);
 
-            foreach ($_todoLists as $singleList) {
+            $projects[$key]->toDoSets = $_todoLists;
+
+            foreach ($projects[$key]->toDoSets as $toDoKey => $singleList) {
                 $toDos = $this->getToDos($singleList->todos_url);
 
-                foreach ($toDos as $toDo) {
-                    $toDosList[] = $toDo;
-                }
+                $projects[$key]->toDoSets[$toDoKey]->toDos = $toDos;
             }
         }
 
-        return $toDosList;
+        return $projects;
     }
 }
