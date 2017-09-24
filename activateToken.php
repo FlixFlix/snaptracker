@@ -10,7 +10,7 @@ $connect = new Connect(); // creates a new connection
 $tokenStorage = new TokenStorage();
 
 if (isset($_GET['purge'])) {
-    file_put_contents($config['tokenPath']);
+    file_put_contents($config['tokenPath'], '');
 }
 
 if (!$tokenStorage->getToken()) {
