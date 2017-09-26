@@ -61,6 +61,26 @@ class Communicator {
     }
 
     /**
+     * This function fetches all correspondences from all the projects
+     */
+    public function getAllCorrespondences()
+    {
+        $projects = $this->getProjects();
+
+        $correspondences = [];
+
+        foreach ($projects as $project) {
+            $url = $this->generateUrl('buckets/' . $project->id . '/client/correspondences.json');
+
+            $_correspondences = json_decode((string) $this->makeGetRequest($url)->getBody());
+
+            $correspondences = array_merge($correspondences, $_correspondences);
+        }
+
+        return $correspondences;
+    }
+
+    /**
      * This function gets all todos from a single list
      */
     public function getToDos($url)

@@ -3,6 +3,8 @@
 class Cacher {
     protected $cacheData;
     protected $cacheExpiry;
+    protected $correspondenceCacheData;
+    protected $correspondenceCacheExpiry;
 
     public function __construct()
     {
@@ -10,6 +12,8 @@ class Cacher {
 
         $this->cacheData = $config['cachedPath'];
         $this->cacheExpiry = $config['expiryInfoPath'];
+        $this->correspondenceCacheExpiry = $config['correspondenceCacheExpiry'];
+        $this->correspondenceCacheData = $config['correspondenceCacheData'];
 
         if (!file_exists($this->cacheData)) {
             file_put_contents($this->cacheData, '');
@@ -25,6 +29,22 @@ class Cacher {
 
         if (!is_writable($this->cacheExpiry)) {
             chmod($this->cacheExpiry, 0777);
+        }
+
+        if (!file_exists($this->correspondenceCacheExpiry)) {
+            file_put_contents($this->correspondenceCacheExpiry, '');
+        }
+
+        if (!is_writable($this->correspondenceCacheExpiry)) {
+            chmod($this->correspondenceCacheExpiry, 0777);
+        }
+
+        if (!file_exists($this->correspondenceCacheData)) {
+            file_put_contents($this->correspondenceCacheData, '');
+        }
+
+        if (!is_writable($this->correspondenceCacheData)) {
+            chmod($this->correspondenceCacheData, 0777);
         }
     }
 
@@ -43,6 +63,13 @@ class Cacher {
         $config = getConfig();
 
         file_put_contents($this->cacheExpiry, time() + $config['expiryTime']);
+    }
+
+    public function isCorrespondencesExpired()
+    {
+        $expiryTime = file_get_contents($this->correspondenceCacheExpiry);
+
+        return time() > $expiryTime;
     }
 
     public function isExpired()

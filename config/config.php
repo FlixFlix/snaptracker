@@ -16,6 +16,7 @@ function getConfig() {
         'tokenPath'               => 'tokens2.txt',
         'cachedPath'              => 'cached.txt', // file in which the json data is saved
         'expiryInfoPath'          => 'cacheExpiry.txt', // file in which we see, when does cache info expires
-        'expiryTime'              => 0 // time in seconds before the data is regenerated
+        'expiryTime'              => 200, // time in seconds before the data is regenerated
+        'correspondenceCacheExpiry' => 'correspondenceCacheExpiry.txt', // correspondence cache expiration time
     ];
 }

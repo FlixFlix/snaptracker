@@ -11,18 +11,24 @@ $cacher = new Cacher();
 echo '<pre>';
 
 if ($tokenStorage->getToken()) {
-    if ($cacher->isExpired()) {
-        $communicator = new Communicator($tokenStorage->getToken()); // after user is logged in, we let him access the communicator class, which communicates with API
+    $communicator = new Communicator($tokenStorage->getToken()); // after user is logged in, we let him access the communicator class, which communicates with API
 
+    if ($cacher->isExpired()) {
         $toDosList = $communicator->getAllToDos();
 
         $cacher->setResults($toDosList);
         $cacher->extendExpiry();
     }
 
+    if ($cacher->isCorrespondencesExpired()) {
+        var_dump($communicator->getAllCorrespondences());
+    }
+
     $toDosList = $cacher->getResults();
 
+    /*
     highlight_string("<?php\n\$toDosList =\n" . var_export($toDosList, true) . ";\n?>");
+    */
 } else {
     echo 'Can not connect to API';
 }
