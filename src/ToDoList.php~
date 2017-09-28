@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @Entity(repositoryClass="ToDoListRepository") @Table(name="to_do_lists")
+ **/
+class ToDoList {
+    /** @Id @Column(type="integer") @GeneratedValue **/
+    protected $id;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    protected $projectId;
+}

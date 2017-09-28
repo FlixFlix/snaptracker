@@ -14,7 +14,7 @@ class TokenStorage {
         }
 
         if (!is_writable($this->tokenPath)) {
-            chmod($this->tokenPath, 0777);
+            @chmod($this->tokenPath, 0777);
         }
     }
 

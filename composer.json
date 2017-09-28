@@ -8,6 +8,13 @@
         }
     ],
     "require": {
-        "league/oauth2-client": "^2.2"
+        "league/oauth2-client": "^2.2",
+        "doctrine/orm": "2.5.6",
+        "doctrine/annotations": "1.4.*",
+        "doctrine/dbal": "2.5.4",
+        "symfony/yaml": "^3.3"
+    },
+    "autoload": {
+        "psr-0": {"": "src/"}
     }
 }
