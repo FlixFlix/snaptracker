@@ -24,7 +24,13 @@ class Communicator {
     /**
      * This function gets ToDo list for a single project
      */
-    public function getTodoLists($project) {
+    public function getTodoLists($projectId) {
+        $url = $this->generateUrl('projects/' . $projectId . '.json');
+
+        $projectRequest = $this->makeGetRequest($url);
+
+        $project = json_decode((string) $projectRequest->getBody());
+
         foreach ($project->dock as $singleDock) { // we loop through dock values, till we get to todoset. After that we break the loop, and keep variable in memory, to use it later
             if ($singleDock->name == 'todoset') {
                 break;
@@ -45,6 +51,7 @@ class Communicator {
 
         return json_decode((string) $this->makeGetRequest($url)->getBody());
     }
+
 
     /**
      * This function fetches all project correspondences, for a specific project.
@@ -83,10 +90,10 @@ class Communicator {
     /**
      * This function gets all todos from a single list
      */
-    public function getToDos($url)
-    {
-        return json_decode((string) $this->makeGetRequest($url)->getBody());
-    }
+    // public function getToDos($url)
+    // {
+    //     return json_decode((string) $this->makeGetRequest($url)->getBody());
+    // }
 
     /**
      * Generates url for a single request, to Basecamp API.
@@ -98,6 +105,29 @@ class Communicator {
         $config = getConfig();
 
         return $config['apiUrl'] . '/' . $this->appId . '/' . $endPoint; // just a simple string concatenation, with required parameters for API url
+    }
+
+    /**
+     * Extracts the list, which contains the specific title.
+     */
+    public function extractList($toDoLists, $title)
+    {
+        $toDoList = null;
+
+        foreach ($toDoLists as $_toDoList) {
+            if ($_toDoList->name == $title) {
+                $toDoList = $_toDoList;
+                break;
+            }
+        }
+
+        if (!$toDoList) {
+            return null;
+        }
+
+        $toDoList->toDos = json_decode((string) $this->makeGetRequest($toDoList->todos_url)->getBody());
+
+        return $toDoList;
     }
 
     /**

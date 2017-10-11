@@ -1,10 +1,14 @@
 <?php
 
-$tokenStorage = $handler->getTokenStorage();
+require '../bootstrap.php';
+
+$handler = new Initialize();
+
+$tokenData = $handler->getEntityManager()->getRepository('Token')->findOneBy(array(), array('id' => 'DESC'));
 $entityManager = $handler->getEntityManager();
 
-if ($tokenStorage->getToken()) {
-    $communicator = new Communicator($tokenStorage->getToken()); // after user is logged in, we let him access the communicator class, which communicates with API
+if ($tokenData) {
+    $communicator = new Communicator($tokenData->getToken());
 
     $projectsRepository = $entityManager->getRepository('Project');
 

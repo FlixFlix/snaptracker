@@ -135,4 +135,28 @@ class Project {
     {
         return $this->clientEmails;
     }
+
+    /**
+     * Set toDoSetId
+     *
+     * @param string $toDoSetId
+     *
+     * @return Project
+     */
+    public function setToDoSetId($toDoSetId)
+    {
+        $this->toDoSetId = $toDoSetId;
+
+        return $this;
+    }
+
+    /**
+     * Get toDoSetId
+     *
+     * @return string
+     */
+    public function getToDoSetId()
+    {
+        return $this->toDoSetId;
+    }
 }

@@ -10,6 +10,8 @@ require 'includes/autoload.php'; // lets include all the libraries we need
 class Initialize {
     protected $entityManager;
     protected $tokenStorage;
+    protected $connection;
+    protected $communicator;
 
     public function __construct()
     {
@@ -23,7 +25,7 @@ class Initialize {
             'driver' => 'pdo_mysql',
             'dbname' => $configurationParams['dbname'],
             'user' => $configurationParams['dbuser'],
-            // 'password' => $configurationParams['dbpass'],
+            'password' => $configurationParams['dbpass'],
             'host' => $configurationParams['dbhost'],
             'port' => 3306
         );
@@ -34,6 +36,9 @@ class Initialize {
 
         // obtaining token storage
         $this->tokenStorage = new TokenStorage();
+
+        // obtaining connection class
+        $this->connection = new Connect();
     }
 
     public function getTokenStorage()
@@ -44,5 +49,10 @@ class Initialize {
     public function getEntityManager()
     {
         return $this->entityManager;
+    }
+
+    public function getConnection()
+    {
+        return $this->connection;
     }
 }
