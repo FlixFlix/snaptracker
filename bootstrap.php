@@ -2,6 +2,8 @@
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\ORM\Tools\SchemaTool;
 
 require_once "vendor/autoload.php"; // lets include all autoloaded dependencies
 require 'config/config.php'; // lets include configuration files
@@ -30,9 +32,10 @@ class Initialize {
             'port' => 3306
         );
 
-
         // obtaining the entity manager
         $this->entityManager = EntityManager::create($conn, $config);
+
+        $this->createRequiredTables();
 
         // obtaining token storage
         $this->tokenStorage = new TokenStorage();
@@ -54,5 +57,17 @@ class Initialize {
     public function getConnection()
     {
         return $this->connection;
+    }
+
+    protected function createRequiredTables() {
+        $schemaManager = $this->entityManager->getConnection()->getSchemaManager();
+
+        if (count($schemaManager->listTables()) < 1) {
+            $schemaTool = new SchemaTool($this->entityManager);
+
+            $classes = $this->entityManager->getMetadataFactory()->getAllMetadata();
+
+            $schemaTool->createSchema($classes);
+        }
     }
 }

@@ -9,14 +9,18 @@ $handler = new Initialize();
 
 $token = $handler->getEntityManager()->getRepository('Token')->findOneBy(array(), array('id' => 'DESC'));
 
-$communicator = new Communicator($token->getToken());
+if ($token) {
+    $communicator = new Communicator($token->getToken());
 
-$toDoLists = $communicator->getToDoLists(5234542); // this gets the lists for a project with provided ID
+    $toDoLists = $communicator->getToDoLists(5234542); // this gets the lists for a project with provided ID
 
-$toDoList = $communicator->extractList($toDoLists, 'Tracker'); // this extracts the list with specific title, in this case 'Tracker'
+    $toDoList = $communicator->extractList($toDoLists, 'Tracker'); // this extracts the list with specific title, in this case 'Tracker'
 
-var_dump($toDoList);
-die;
+    var_dump($toDoList);
+    die;
+} else {
+    echo '<pre>Unauthorized request</pre>';
+}
 
 // echo '</pre>';
 
