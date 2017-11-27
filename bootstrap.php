@@ -29,7 +29,7 @@ class Initialize {
             'user' => $configurationParams['dbuser'],
             'password' => $configurationParams['dbpass'],
             'host' => $configurationParams['dbhost'],
-            'port' => 3306
+            'port' => $configurationParams['dbport']
         );
 
         // obtaining the entity manager
