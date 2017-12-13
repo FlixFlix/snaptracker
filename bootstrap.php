@@ -11,7 +11,6 @@ require 'includes/autoload.php'; // lets include all the libraries we need
 
 class Initialize {
     protected $entityManager;
-    protected $tokenStorage;
     protected $connection;
     protected $communicator;
 
@@ -37,16 +36,8 @@ class Initialize {
 
         $this->createRequiredTables();
 
-        // obtaining token storage
-        $this->tokenStorage = new TokenStorage();
-
         // obtaining connection class
         $this->connection = new Connect();
-    }
-
-    public function getTokenStorage()
-    {
-        return $this->tokenStorage;
     }
 
     public function getEntityManager()
